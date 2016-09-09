@@ -11,9 +11,11 @@
 }
 
 body {
-  border: 1px solid green;
   color: #111;
   background-color: black;
+  height: 100%;
+  width: 100%;
+  margin: 0px;
 }
 
 h1 {
@@ -21,14 +23,13 @@ h1 {
 }
 
 #terminal-container {
-    margin: 0 auto;
-    padding: 2px;
+  margin: 0px;
+  border: 1px solid green;
 }
 
 #terminal-container .terminal {
-    background-color: #111;
-    color: #fafafa;
-    padding: 2px;
+  background-color: #111;
+  color: #fafafa;
 }
 
 #terminal-container .terminal:focus .terminal-cursor {
