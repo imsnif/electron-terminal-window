@@ -26,10 +26,6 @@ function fitTerminal (term, width, height) {
 }
 
 function attachTerminals(term, ptyTerm, opts) {
-  ptyTerm.once('data', function (data) {
-    // first time
-    ipcRenderer.send('terminalLoaded')
-  })
   ptyTerm.on('data', function(data) {
     term.write(data);
   })
@@ -47,6 +43,7 @@ function attachTerminals(term, ptyTerm, opts) {
 module.exports = function createTerminal(terminalContainer, opts = {}) {
   const term = new Terminal(Object.assign({}, termOpts, opts))
   term.open(terminalContainer)
+  fitTerminal(term, opts.width, opts.height)
   const ptyTerm = pty.spawn(process.platform === 'win32' ? 'cmd.exe' : 'bash',
     process.env.testing ? ['--noprofile', '--norc'] : [],
     Object.assign({}, ptyOpts(term), opts)

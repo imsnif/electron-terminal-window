@@ -3,13 +3,16 @@
 const { BrowserWindow, ipcMain} = require('electron')
 
 module.exports = function TerminalWindow (opts = {}) {
-  const win = new BrowserWindow(Object.assign({}, opts, {show: false}))
+  const win = new BrowserWindow(Object.assign({}, opts, {show: false, frame: false}))
   win.loadURL(`file://${__dirname}/index.html`)
-  ipcMain.once('terminalLoaded', () => {
-    win.webContents.send('termResize', {width: opts.width, height: opts.height})
-    win.show()
-  })
-  // Open the DevTools.
-  // win.webContents.openDevTools()
+  win.webContents.executeJavaScript(
+    `require('./terminal.js')(
+      window.document.getElementById('terminal-container'), {
+        width: ${opts.width},
+        height: ${opts.height}
+      }
+    )`
+  )
+  win.show()
   return win
 }
