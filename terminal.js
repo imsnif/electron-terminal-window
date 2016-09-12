@@ -46,7 +46,7 @@ function attachTerminals(term, ptyTerm, opts) {
 
 module.exports = function createTerminal(terminalContainer, opts = {}) {
   const term = new Terminal(Object.assign({}, termOpts, opts))
-  term.open(terminalContainer);
+  term.open(terminalContainer)
   const ptyTerm = pty.spawn(process.platform === 'win32' ? 'cmd.exe' : 'bash',
     process.env.testing ? ['--noprofile', '--norc'] : [],
     Object.assign({}, ptyOpts(term), opts)
