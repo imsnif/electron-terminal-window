@@ -12,7 +12,7 @@ const termOpts = {
 function createTerm (terminalContainer, opts) {
   const term = new Terminal(Object.assign({}, termOpts, opts))
   term.open(terminalContainer)
-  fitTerminal(term, opts.width, opts.height)
+  term.fit()
   return term
 }
 
@@ -34,12 +34,6 @@ function ptyOpts (cols, rows) {
   }
 }
 
-function fitTerminal (term, width, height) {
-  document.getElementById('terminal-container').style.height = `${height - 2}px` // TODO: exact number
-  document.getElementById('terminal-container').style.width = `${width - 2}px`
-  term.fit()
-}
-
 function attachTerminals(term, ptyTerm, opts) {
   ptyTerm.on('data', function(data) {
     term.write(data);
@@ -50,9 +44,7 @@ function attachTerminals(term, ptyTerm, opts) {
   term.on('resize', (opts) => {
     ptyTerm.resize(opts.cols, opts.rows)
   })
-  ipcRenderer.on('termResize', (event, opts) => {
-    fitTerminal(term, opts.width, opts.height)
-  })
+  ipcRenderer.on('termResize', () => term.fit())
 }
 
 module.exports = function createTerminal(terminalContainer, opts = {}) {
@@ -60,6 +52,6 @@ module.exports = function createTerminal(terminalContainer, opts = {}) {
   const ptyTerm = createPtyTerm(opts, termEmulator.cols, termEmulator.rows)
   attachTerminals(termEmulator, ptyTerm, opts)
   return {
-    resize: (width, height) => fitTerminal(termEmulator, width, height)
+    resize: () => termEmulator.fit()
   }
 }

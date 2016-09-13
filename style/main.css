@@ -23,8 +23,10 @@ h1 {
 }
 
 #terminal-container {
+  padding: 1px;
   margin: 0px;
-  border: 1px solid green;
+  width: 100vw;
+  height: 100vh;
 }
 
 #terminal-container .terminal {
@@ -35,3 +37,24 @@ h1 {
 #terminal-container .terminal:focus .terminal-cursor {
     background-color: #fafafa;
 }
+
+#top, #bottom, #left, #right {
+  background: green;
+  position: fixed;
+  z-index: 10;
+}
+
+#left, #right {
+  top: 0; bottom: 0;
+  width: 1px;
+}
+
+#top, #bottom {
+  left: 0; right: 0;
+  height: 1px;
+}
+
+#top { top: 0; }
+#bottom { bottom: 0; }
+#left { left: 0; }
+#right { right: 0; }

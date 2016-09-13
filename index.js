@@ -3,7 +3,7 @@
 const { BrowserWindow, ipcMain} = require('electron')
 
 module.exports = function TerminalWindow (opts = {}) {
-  const win = new BrowserWindow(Object.assign({}, opts, {show: false, frame: false}))
+  const win = new BrowserWindow(Object.assign({}, opts, {show: false}))
   win.loadURL(`file://${__dirname}/index.html`)
   win.on('resize', function () {
     const bounds = win.getBounds()
