@@ -40,7 +40,7 @@ function attachTerminals(term, ptyTerm, opts) {
   })
 }
 
-module.exports = function createTerminal(terminalContainer, opts = {}) {
+function createTerminal(terminalContainer, opts = {}) {
   const term = new Terminal(Object.assign({}, termOpts, opts))
   term.open(terminalContainer)
   fitTerminal(term, opts.width, opts.height)
@@ -49,4 +49,9 @@ module.exports = function createTerminal(terminalContainer, opts = {}) {
     Object.assign({}, ptyOpts(term), opts)
   )
   attachTerminals(term, ptyTerm, opts)
+  return {
+    resize: (width, height) => fitTerminal(term, width, height)
+  }
 }
+
+module.exports = createTerminal
