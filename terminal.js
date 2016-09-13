@@ -44,7 +44,6 @@ function attachTerminals(term, ptyTerm, opts) {
   term.on('resize', (opts) => {
     ptyTerm.resize(opts.cols, opts.rows)
   })
-  ipcRenderer.on('termResize', () => term.fit())
 }
 
 module.exports = function createTerminal(terminalContainer, opts = {}) {
