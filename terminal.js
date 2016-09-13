@@ -1,9 +1,9 @@
 'use strict'
 
+require('./node_modules/xterm/addons/fit/fit.js') // mixin
+
 const pty = require('pty.js')
 const Terminal = require('xterm')
-const termFitter = require('./node_modules/xterm/addons/fit/fit.js')
-const { ipcRenderer } = require('electron')
 
 const termOpts = {
   cursorBlink: false
@@ -34,19 +34,19 @@ function ptyOpts (cols, rows) {
   }
 }
 
-function attachTerminals(term, ptyTerm, opts) {
-  ptyTerm.on('data', function(data) {
-    term.write(data);
+function attachTerminals (term, ptyTerm, opts) {
+  ptyTerm.on('data', function (data) {
+    term.write(data)
   })
-  term.on('data', function(data) {
-    ptyTerm.write(data);
+  term.on('data', function (data) {
+    ptyTerm.write(data)
   })
   term.on('resize', (opts) => {
     ptyTerm.resize(opts.cols, opts.rows)
   })
 }
 
-module.exports = function createTerminal(terminalContainer, opts = {}) {
+module.exports = function createTerminal (terminalContainer, opts = {}) {
   const termEmulator = createTerm(terminalContainer, opts)
   const ptyTerm = createPtyTerm(opts, termEmulator.cols, termEmulator.rows)
   attachTerminals(termEmulator, ptyTerm, opts)
