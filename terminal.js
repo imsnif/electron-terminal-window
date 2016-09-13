@@ -9,11 +9,26 @@ const termOpts = {
   cursorBlink: false
 }
 
-function ptyOpts (term) {
+function createTerm (terminalContainer, opts) {
+  const term = new Terminal(Object.assign({}, termOpts, opts))
+  term.open(terminalContainer)
+  fitTerminal(term, opts.width, opts.height)
+  return term
+}
+
+function createPtyTerm (opts, cols, rows) {
+  const ptyTerm = pty.spawn(process.platform === 'win32' ? 'cmd.exe' : 'bash',
+    process.env.testing ? ['--noprofile', '--norc'] : [],
+    Object.assign({}, ptyOpts(cols, rows), opts)
+  )
+  return ptyTerm
+}
+
+function ptyOpts (cols, rows) {
   return {
     name: 'xterm-color',
-    cols: term.cols,
-    rows: term.rows,
+    cols: cols,
+    rows: rows,
     cwd: process.env.PWD,
     env: process.env
   }
@@ -40,18 +55,11 @@ function attachTerminals(term, ptyTerm, opts) {
   })
 }
 
-function createTerminal(terminalContainer, opts = {}) {
-  const term = new Terminal(Object.assign({}, termOpts, opts))
-  term.open(terminalContainer)
-  fitTerminal(term, opts.width, opts.height)
-  const ptyTerm = pty.spawn(process.platform === 'win32' ? 'cmd.exe' : 'bash',
-    process.env.testing ? ['--noprofile', '--norc'] : [],
-    Object.assign({}, ptyOpts(term), opts)
-  )
-  attachTerminals(term, ptyTerm, opts)
+module.exports = function createTerminal(terminalContainer, opts = {}) {
+  const termEmulator = createTerm(terminalContainer, opts)
+  const ptyTerm = createPtyTerm(opts, termEmulator.cols, termEmulator.rows)
+  attachTerminals(termEmulator, ptyTerm, opts)
   return {
-    resize: (width, height) => fitTerminal(term, width, height)
+    resize: (width, height) => fitTerminal(termEmulator, width, height)
   }
 }
-
-module.exports = createTerminal
