@@ -27,6 +27,8 @@ async function createApp (t) {
   }
 }
 
+// TODO: decouple tests from coverage
+
 async function getCoverage (app) {
   await app.webContents.executeJavaScript(`
     const ipcRenderer = require('electron').ipcRenderer
