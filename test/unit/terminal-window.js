@@ -12,7 +12,6 @@ test('can create terminal window', async t => {
     await app.stop()
     t.ok(matchesScreenshot, 'terminal window appears as expected')
   } catch (e) {
-    console.log('e:', e)
     await app.stop()
     t.fail(e)
   }
