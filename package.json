@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "export testing='true' && export PS1='electron-terminal-window$' && babel-tape-runner ./test/visual/*.js --tap | tap-spec",
-    "coverage": "export testing='true' && export PS1='electron-terminal-window$' && export coverage='true' && babel-tape-runner ./test/visual/*.js --tap | tap-spec"
+    "test": "export testing='true' && export PS1='electron-terminal-window$' && standard && babel-tape-runner ./test/visual/*.js --tap | tap-spec",
+    "coverage": "export testing='true' && export PS1='electron-terminal-window$' && standard && export coverage='true' && babel-tape-runner ./test/visual/*.js --tap | tap-spec"
   },
   "author": "",
   "license": "ISC",

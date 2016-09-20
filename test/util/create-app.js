@@ -22,7 +22,7 @@ module.exports = async function createApp (t) {
   try {
     const app = new Application({
       path: electron,
-      args: [ path.resolve(__dirname, "..", recordCoverage ? 'runner-coverage' : 'runner') ],
+      args: [ path.resolve(__dirname, '..', recordCoverage ? 'runner-coverage' : 'runner') ],
       nodeIntegration: true
     })
     await app.start()
@@ -45,7 +45,7 @@ test.onFinish(() => {
   if (recordCoverage) {
     reporter.addAll([ 'text', 'html', 'lcov' ])
     reporter.write(collector, false, function () {
-        console.log('All reports generated')
+      console.log('All reports generated')
     })
   }
 })
