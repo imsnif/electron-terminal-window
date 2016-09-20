@@ -44,8 +44,6 @@ module.exports = async function createApp (t) {
 test.onFinish(() => {
   if (recordCoverage) {
     reporter.addAll([ 'text', 'html', 'lcov' ])
-    reporter.write(collector, false, function () {
-      console.log('All reports generated')
-    })
+    reporter.write(collector, false, () => {}) // no-op
   }
 })
