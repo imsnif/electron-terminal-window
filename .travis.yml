@@ -9,7 +9,7 @@ addons:
 
 before_install:
   - export DISPLAY=':99.0'
-  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+  - Xvfb :99 -screen 0 640x480x8 > /dev/null 2>&1 &
 
 env:
   - CXX=g++-4.8
