@@ -11,6 +11,9 @@ before_install:
   - export DISPLAY=':99.0'
   - Xvfb :99 -screen 0 640x480x8 > /dev/null 2>&1 &
 
+after_install:
+  - electron-rebuild
+
 env:
   - CXX=g++-4.8
 
