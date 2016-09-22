@@ -2,4 +2,24 @@ language: node_js
 node_js:
   - "node"
 
-script: ./script/travis-build.sh
+addons:
+  apt:
+    packages:
+      - xvfb
+
+before_install:
+  - export DISPLAY=':99.0'
+  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 640x480x8"
+
+before_script:
+  - "./node_modules/.bin/electron-rebuild"
+
+env:
+  - CXX=g++-4.8
+
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-4.8
