@@ -2,11 +2,10 @@
 
 if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
   export DISPLAY=:99.0
-  sh -a /etc/init.d/xvfb start
   sleep 3
 fi
 
 node --version
 npm --version
 
-xvfb-run npm test
+xvfb-run -s "-screen 0 640x480x8" npm test
