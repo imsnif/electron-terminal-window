@@ -2,6 +2,7 @@
 
 if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
   export DISPLAY=:99.0
+  sh -a /etc/init.d/xvfb start
   sleep 3
 fi
 
