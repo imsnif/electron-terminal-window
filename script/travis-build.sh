@@ -9,5 +9,4 @@ fi
 node --version
 npm --version
 
-npm install
-npm test
+xvfb-run npm test

@@ -6,6 +6,7 @@ addons:
   apt:
     packages:
       - xvfb
+      - xvfb-run
 
 before_script: 'chmod a+x ./script/travis-build.sh'
 
