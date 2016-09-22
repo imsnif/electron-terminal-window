@@ -7,7 +7,7 @@ addons:
     packages:
       - xvfb
 
-before_script: 'chown a+x ./script/travis-build.sh'
+before_script: 'chmod a+x ./script/travis-build.sh'
 
 script: ./script/travis-build.sh
 
