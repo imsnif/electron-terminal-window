@@ -1,4 +1,4 @@
-const electron = require('electron-prebuilt')
+const electron = require('electron')
 const Application = require('spectron').Application
 const test = require('tape')
 const path = require('path')

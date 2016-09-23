@@ -8,6 +8,6 @@ fi
 node --version
 npm --version
 
-electron-rebuild
+./node_modules/.bin/electron-rebuild
 
 xvfb-run -s "-screen 0 640x480x8" npm test
