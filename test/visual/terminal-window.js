@@ -31,7 +31,7 @@ test('can resize terminal window', async t => {
     await new Promise((resolve) => setTimeout(resolve, 100)) // allow time to resize
     const capturedBuf = await app.browserWindow.capturePage()
     fs.writeFileSync(`${__dirname}/../screenshots/debug.png`, capturedBuf)
-    const truth = fs.readFileSync(`${__dirname}/../screenshots/resizedWindow.png`)
+    const truth = fs.readFileSync(`${__dirname}/../screenshots/travis-resizedWindow.png`)
     const matchesScreenshot = Buffer.compare(capturedBuf, truth) === 0
     await app.stop()
     t.ok(matchesScreenshot, 'terminal resized as expected')
