@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "xvfb-test": "xvfb-run -s '-screen 0 640x480x8' npm test",
     "test": "export testing='true' && export PS1='electron-terminal-window$' && standard && xvfb-maybe babel-tape-runner ./test/visual/*.js --tap | tap-spec",
     "coverage": "export testing='true' && export PS1='electron-terminal-window$' && standard && export coverage='true' && xvfb-maybe babel-tape-runner ./test/visual/*.js --tap | tap-spec",
     "mailgun": "export MAILGUN='key-4d2759384e2c1129d24f0d750f96c73a' && node ./script/email.js"
