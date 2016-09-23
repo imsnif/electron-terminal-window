@@ -2,7 +2,7 @@
 
 const { app } = require('electron')
 
-const TerminalWindow = require('../../lib')
+const TerminalWindow = require('../..')
 
 app.on('ready', () => {
   TerminalWindow({

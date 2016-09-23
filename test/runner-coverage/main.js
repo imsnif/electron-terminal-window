@@ -4,7 +4,7 @@ require('../util/require-hook')
 
 const { app, ipcMain } = require('electron')
 
-const TerminalWindow = require('../../lib')
+const TerminalWindow = require('../..')
 const path = require('path')
 
 app.on('ready', () => {
