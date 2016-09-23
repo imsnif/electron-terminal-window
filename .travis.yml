@@ -11,7 +11,7 @@ addons:
 before_script:
   - './node_modules/.bin/electron-rebuild'
 
-script: ./script/travis-build.sh
+script: 'npm run xvfb-test'
 
 env:
   - CXX=g++-4.8 DISPLAY=:99.0 ENVNAME=travis
