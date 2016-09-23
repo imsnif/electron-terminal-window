@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "export testing='true' && export PS1='electron-terminal-window$' && standard && babel-tape-runner ./test/visual/*.js --tap | tap-spec",
-    "coverage": "export testing='true' && export PS1='electron-terminal-window$' && standard && export coverage='true' && babel-tape-runner ./test/visual/*.js --tap | tap-spec",
+    "test": "export testing='true' PS1='electron-terminal-window$' && standard && babel-tape-runner ./test/visual/*.js --tap | tap-spec",
+    "coverage": "export coverage='true' testing='true' PS1='electron-terminal-window$' && standard && babel-tape-runner ./test/visual/*.js --tap | tap-spec",
     "xvfb-test": "xvfb-run -s '-screen 0 640x480x8' npm test",
     "xvfb-coverage": "xvfb-run -s '-screen 0 640x480x8' npm run coverage"
   },
