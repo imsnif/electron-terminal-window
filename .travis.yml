@@ -19,6 +19,7 @@ after_failure: 'npm run mailgun'
 env:
   - CXX=g++-4.8
   - DISPLAY=:99.0
+  - ENVNAME='travis'
 
 addons:
   apt:
