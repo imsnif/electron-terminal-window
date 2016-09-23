@@ -8,7 +8,9 @@ addons:
       - xvfb
       - xvfb-run
 
-before_script: 'chmod a+x ./script/travis-build.sh'
+before_script:
+  - 'chmod a+x ./script/travis-build.sh'
+  - './node_modules/.bin/electron-rebuild'
 
 script: ./script/travis-build.sh
 
@@ -16,6 +18,7 @@ after_failure: 'npm run mailgun'
 
 env:
   - CXX=g++-4.8
+  - DISPLAY=:99.0
 
 addons:
   apt:
