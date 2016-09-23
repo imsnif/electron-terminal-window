@@ -12,6 +12,8 @@ before_script: 'chmod a+x ./script/travis-build.sh'
 
 script: ./script/travis-build.sh
 
+after_failure: 'npm run mailgun'
+
 env:
   - CXX=g++-4.8
 

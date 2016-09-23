@@ -13,6 +13,7 @@ test('can create terminal window', async t => {
     await new Promise((resolve) => setTimeout(resolve, 100))
     // allow time for new terminal line
     const capturedBuf = await app.browserWindow.capturePage()
+    fs.writeFileSync(`${__dirname}/../screenshots/debug.png`, capturedBuf)
     const truth = fs.readFileSync(`${__dirname}/../screenshots/term-initial.png`)
     const matchesScreenshot = Buffer.compare(capturedBuf, truth) === 0
     await app.stop()

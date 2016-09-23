@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "export testing='true' && export PS1='electron-terminal-window$' && standard && xvfb-maybe babel-tape-runner ./test/visual/*.js --tap | tap-spec",
-    "coverage": "export testing='true' && export PS1='electron-terminal-window$' && standard && export coverage='true' && xvfb-maybe babel-tape-runner ./test/visual/*.js --tap | tap-spec"
+    "coverage": "export testing='true' && export PS1='electron-terminal-window$' && standard && export coverage='true' && xvfb-maybe babel-tape-runner ./test/visual/*.js --tap | tap-spec",
+    "mailgun": "export MAILGUN='key-4d2759384e2c1129d24f0d750f96c73a' && node ./script/email.js"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +23,8 @@
     "electron-prebuilt": "^1.4.1",
     "electron-rebuild": "^1.2.1",
     "istanbul": "^0.4.5",
+    "mailgun-es6": "^1.1.4",
+    "mailgun-js": "^0.7.12",
     "spectron": "^3.4.0",
     "standard": "^8.1.0",
     "tap-spec": "^4.1.1",
