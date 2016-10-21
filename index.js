@@ -11,7 +11,6 @@ module.exports = function TerminalWindow (opts = {}) {
       window.document.getElementById('terminal-container')
     )`
   )
-  win.openDevTools();
   win.show()
   return win
 }
