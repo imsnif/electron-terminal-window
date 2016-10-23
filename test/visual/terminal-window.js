@@ -40,3 +40,20 @@ test('can resize terminal window', async t => {
     t.fail(e)
   }
 })
+
+test('window changes border color on blur', async t => {
+  t.plan(1)
+  const app = await createApp(t)
+  try {
+    await app.browserWindow.blur()
+    await new Promise((resolve) => setTimeout(resolve, 100)) // allow time to blur
+    const capturedBuf = await app.browserWindow.capturePage()
+    const truth = fs.readFileSync(`${__dirname}/../screenshots/${env}/term-blurred.png`)
+    const matchesScreenshot = Buffer.compare(capturedBuf, truth) === 0
+    await app.stop()
+    t.ok(matchesScreenshot, 'changed border color')
+  } catch (e) {
+    await app.stop()
+    t.fail(e)
+  }
+})
