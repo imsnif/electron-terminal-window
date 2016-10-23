@@ -14,6 +14,7 @@ test('can create terminal window', async t => {
     await new Promise((resolve) => setTimeout(resolve, 100))
     // allow time for new terminal line
     const capturedBuf = await app.browserWindow.capturePage()
+    fs.writeFileSync(`${__dirname}/../screenshots/${env}/debug1.png`, capturedBuf)
     const truth = fs.readFileSync(`${__dirname}/../screenshots/${env}/term-initial.png`)
     const matchesScreenshot = Buffer.compare(capturedBuf, truth) === 0
     await app.stop()
@@ -31,6 +32,7 @@ test('can resize terminal window', async t => {
     await app.browserWindow.setSize(200, 200)
     await new Promise((resolve) => setTimeout(resolve, 100)) // allow time to resize
     const capturedBuf = await app.browserWindow.capturePage()
+    fs.writeFileSync(`${__dirname}/../screenshots/${env}/debug2.png`, capturedBuf)
     const truth = fs.readFileSync(`${__dirname}/../screenshots/${env}/resizedWindow.png`)
     const matchesScreenshot = Buffer.compare(capturedBuf, truth) === 0
     await app.stop()
@@ -48,6 +50,7 @@ test('window changes border color on blur', async t => {
     await app.browserWindow.blur()
     await new Promise((resolve) => setTimeout(resolve, 100)) // allow time to blur
     const capturedBuf = await app.browserWindow.capturePage()
+    fs.writeFileSync(`${__dirname}/../screenshots/${env}/debug3.png`, capturedBuf)
     const truth = fs.readFileSync(`${__dirname}/../screenshots/${env}/term-blurred.png`)
     const matchesScreenshot = Buffer.compare(capturedBuf, truth) === 0
     await app.stop()
