@@ -8,8 +8,7 @@
     "coverage": "export coverage='true' testing='true' PS1='electron-terminal-window$' && standard && babel-tape-runner ./test/visual/*.js --tap | tap-spec",
     "xvfb-test": "xvfb-run -s '-screen 0 640x480x8' npm test",
     "xvfb-coverage": "xvfb-run -s '-screen 0 640x480x8' npm run coverage",
-    "coveralls": "npm run xvfb-coverage && cat ./coverage/lcov.info | coveralls",
-    "email": "export MAILGUN='key-4d2759384e2c1129d24f0d750f96c73a' && node ./script/email.js"
+    "coveralls": "npm run xvfb-coverage && cat ./coverage/lcov.info | coveralls"
   },
   "author": "",
   "license": "ISC",
@@ -27,7 +26,6 @@
     "electron": "^1.4.2",
     "electron-rebuild": "^1.2.1",
     "istanbul": "^0.4.5",
-    "mailgun-es6": "^1.1.4",
     "spectron": "^3.4.0",
     "standard": "^8.1.0",
     "tap-spec": "^4.1.1",

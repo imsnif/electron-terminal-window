@@ -10,8 +10,6 @@ addons:
 
 before_script: electron-rebuild
 
-after_failure: 'npm run email'
-
 script: npm run xvfb-test
 
 after_script: npm run coveralls
