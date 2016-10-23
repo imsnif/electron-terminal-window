@@ -11,6 +11,18 @@ module.exports = function TerminalWindow (opts = {}) {
       window.document.getElementById('terminal-container')
     )`
   )
+  win.on('focus', () => {
+    win.webContents.executeJavaScript(
+      `document.querySelectorAll('#top, #bottom, #left, #right')
+        .forEach(function(e) { e.style.background = "red"  })`
+    )
+  })
+  win.on('blur', () => {
+    win.webContents.executeJavaScript(
+      `document.querySelectorAll('#top, #bottom, #left, #right')
+        .forEach(function(e) { e.style.background = "green"  })`
+    )
+  })
   win.show()
   return win
 }
