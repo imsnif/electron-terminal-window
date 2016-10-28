@@ -24,5 +24,5 @@ module.exports = function TerminalWindow (opts = {}) {
     )
   })
   win.show()
-  return win
+  return Object.assign(win, {constructor: TerminalWindow}) // TODO: fix this
 }
