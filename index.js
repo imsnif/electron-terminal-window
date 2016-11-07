@@ -6,11 +6,11 @@ module.exports = function TerminalWindow (opts = {}) {
   const win = new BrowserWindow(Object.assign({}, opts, {show: false}))
   win.loadURL(`file://${__dirname}/lib/index.html`)
   win.on('resize', () => {
-      let size = win.getSize()
-      const cols = Math.floor(size[0] / 17) //FIXME: magic number should be based on font-size
-      const rows = Math.floor(size[1] / 17)
-      win.webContents.executeJavaScript(`terminal.resize({rows:${rows}, cols:${cols}})`)
-    })
+    let size = win.getSize()
+    const cols = Math.floor(size[0] / 17) // FIXME: magic number should be based on font-size
+    const rows = Math.floor(size[1] / 17)
+    win.webContents.executeJavaScript(`terminal.resize({rows:${rows}, cols:${cols}})`)
+  })
   win.webContents.executeJavaScript(
     `const terminal = require('./terminal.js')(
       window.document.getElementById('terminal-container')
