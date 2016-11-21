@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "export testing='true' PS1='electron-terminal-window$' && standard && babel-tape-runner ./test/visual/*.js --tap | tap-spec",
-    "coverage": "export coverage='true' testing='true' PS1='electron-terminal-window$' && standard && babel-tape-runner ./test/visual/*.js --tap | tap-spec",
+    "test": "export testing='true' PS1='electron-terminal-window$' && standard && babel-tape-runner ./test/**/*.spec.js --tap | tap-spec",
+    "coverage": "export coverage='true' testing='true' PS1='electron-terminal-window$' && standard && babel-tape-runner ./test/**/*.spec.js --tap | tap-spec",
     "xvfb-test": "xvfb-run -s '-screen 0 640x480x8' npm test",
     "xvfb-coverage": "xvfb-run -s '-screen 0 640x480x8' npm run coverage",
     "coveralls": "npm run xvfb-coverage && cat ./coverage/lcov.info | coveralls"
@@ -13,6 +13,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "electron-localshortcut": "^1.0.0",
+    "electron-renderer-value": "^1.1.0",
     "pty.js": "^0.3.1",
     "xterm": "^1.1.3"
   },
@@ -26,6 +28,9 @@
     "electron": "^1.4.2",
     "electron-rebuild": "^1.2.1",
     "istanbul": "^0.4.5",
+    "lcov-result-merger": "^1.2.0",
+    "proxyquire": "^1.7.10",
+    "sinon": "^1.17.6",
     "spectron": "^3.4.0",
     "standard": "^8.1.0",
     "tap-spec": "^4.1.1",
