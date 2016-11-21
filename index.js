@@ -1,6 +1,7 @@
 'use strict'
 
 const { BrowserWindow } = require('electron')
+const registerCopy = require('./lib/register-copy')
 
 module.exports = function TerminalWindow (opts = {}) {
   const win = new BrowserWindow(Object.assign({}, opts, {show: false}))
@@ -24,5 +25,6 @@ module.exports = function TerminalWindow (opts = {}) {
     )
   })
   win.show()
+  registerCopy(win)
   return Object.assign(win, {constructor: TerminalWindow}) // TODO: fix this
 }
