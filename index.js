@@ -6,7 +6,12 @@ const registerCopy = require('./lib/register-copy')
 module.exports = function TerminalWindow (opts = {}) {
   const win = new BrowserWindow(Object.assign({}, opts, {show: false}))
   win.loadURL(`file://${__dirname}/lib/index.html`)
-  win.on('resize', () => win.webContents.executeJavaScript('terminal.resize()'))
+  win.on('resize', () => {
+    let size = win.getSize()
+    const cols = Math.floor(size[0] / 16) // FIXME: when we can configure fonts.
+    const rows = Math.floor(size[1] / 16)
+    win.webContents.executeJavaScript(`terminal.resize({rows:${rows}, cols:${cols}})`)
+  })
   win.webContents.executeJavaScript(
     `const terminal = require('./terminal.js')(
       window.document.getElementById('terminal-container')
